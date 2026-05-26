@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Videoer</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div>
+          <a href="index.html">Markus Koefoed-Scherff</a>
+        </div>
+        <nav>
+          <a href="video.html">Videoer</a>
+          <a href="gd.html">Grafisk Design</a>
+          <a href="hjemmeside.html">Hjemmesider</a>
+        </nav>
+      </header>
+
+      <h2>Videoer</h2>
+
+      <div class="projects">
+        <a href="https://www.youtube.com/@markuskoefoed" target="_blank" rel="noopener noreferrer" class="project youtube-link">
+          <img src="billeder/ik tænk billede 3.png" alt="YouTube Channel" />
+          <span class="youtube-label">Youtube</span>
+        </a>
+        <div class="project project-video">
+          <div class="video-player">
+            <video id="th-done-video" src="billeder/TH Done.mp4" poster="billeder/campaign.png"></video>
+            <button class="video-play-button" id="th-video-play-button" aria-label="Play video"></button>
+            <button class="video-fullscreen-button" id="th-video-fullscreen-button" aria-label="Fullscreen"></button>
+          </div>
+        </div>
+        <div class="project placeholder">
+          <img src="billeder/logo.png" alt="Logo" />
+        </div>
+      </div>
+
+      <script>
+        const thVideo = document.getElementById("th-done-video");
+        const thPlayButton = document.getElementById("th-video-play-button");
+
+        if (thVideo && thPlayButton) {
+          const togglePlay = () => {
+            if (thVideo.paused) {
+              thVideo.play();
+            } else {
+              thVideo.pause();
+            }
+          };
+
+          thPlayButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            togglePlay();
+          });
+
+          thVideo.addEventListener("click", togglePlay);
+
+          thVideo.addEventListener("play", () => {
+            thVideo.parentElement.classList.add("playing");
+          });
+
+          thVideo.addEventListener("pause", () => {
+            thVideo.parentElement.classList.remove("playing");
+          });
+
+          thVideo.addEventListener("ended", () => {
+            thVideo.parentElement.classList.remove("playing");
+          });
+
+          const thFullscreenButton = document.getElementById("th-video-fullscreen-button");
+          if (thFullscreenButton) {
+            thFullscreenButton.addEventListener("click", (event) => {
+              event.stopPropagation();
+              if (thVideo.requestFullscreen) {
+                thVideo.requestFullscreen();
+              } else if (thVideo.webkitRequestFullscreen) {
+                thVideo.webkitRequestFullscreen();
+              } else if (thVideo.msRequestFullscreen) {
+                thVideo.msRequestFullscreen();
+              }
+            });
+          }
+        }
+      </script>
+
+      <footer class="page-footer">
+        <p>Scherffmarkus@gmail.com</p>
+        <a class="social-link" href="https://instagram.com/markuskoefoed" target="_blank" rel="noopener noreferrer">
+          <img src="billeder/instagram.svg" alt="Instagram" />
+          <span>Markuskoefoed</span>
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>

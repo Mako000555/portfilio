@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Portfolio</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div>
+          <a href="index.html">Markus Koefoed-Scherff</a>
+        </div>
+        <nav>
+          <a href="video.html">Videoer</a>
+          <a href="gd.html">Grafisk Design</a>
+          <a href="hjemmeside.html">Hjemmesider</a>
+        </nav>
+      </header>
+
+      <section class="intro">
+        <div class="intro-left">
+          <h1>HI THERE, I'M MARKUS.</h1>
+        </div>
+        <div class="intro-right">
+          <p>I'm a multimedia design student based in Copenhagen with a passion for visual storytelling, graphic design, and digital experiences. Check out my work here.</p>
+        </div>
+      </section>
+
+      <video
+        src="billeder/Comp 1_2.mp4"
+        loop
+        autoplay
+        muted
+        playsinline
+        onclick="
+          this.play();
+          return false;
+        "
+        onpause="this.play()"
+      ></video>
+
+      <footer class="page-footer">
+        <p>Scherffmarkus@gmail.com</p>
+        <a class="social-link" href="https://instagram.com/markuskoefoed" target="_blank" rel="noopener noreferrer">
+          <img src="billeder/instagram.svg" alt="Instagram" />
+          <span>Markuskoefoed</span>
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>

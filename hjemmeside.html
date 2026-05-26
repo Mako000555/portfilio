@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Hjemmesider</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div>
+          <a href="index.html">Markus Koefoed-Scherff</a>
+        </div>
+        <nav>
+          <a href="video.html">Videoer</a>
+          <a href="gd.html">Grafisk Design</a>
+          <a href="hjemmeside.html">Hjemmesider</a>
+        </nav>
+      </header>
+
+      <h2>Hjemmesider</h2>
+
+      <div class="projects">
+        <button class="lottie-button" onclick="openScreencaptureGallery()">
+          <div class="lottie">
+            <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+            <dotlottie-wc src="https://lottie.host/12220f1e-ffb8-4047-9d2a-883bc87ea1fc/3oyoLnvxto.lottie" style="width: 100%; height: 100%" autoplay loop></dotlottie-wc>
+          </div>
+        </button>
+
+        <button class="project-card" onclick="openTokiShowcase()">
+          <img src="billeder/tokiai3.png" alt="TÓKI – Designsystem & Webudvikling" />
+        </button>
+      </div>
+
+      <div id="toki-modal" class="gallery-modal">
+        <div class="gallery-modal-content">
+          <button class="gallery-modal-close" onclick="closeTokiShowcase()">&times;</button>
+          <div class="toki-showcase-content">
+            <img src="./billeder/tokifullpage.png" alt="TÓKI – Designsystem & Webudvikling" />
+          </div>
+        </div>
+      </div>
+
+      <div id="screencapture-modal" class="gallery-modal">
+        <div class="gallery-modal-content">
+          <button class="gallery-modal-close" onclick="closeScreencaptureGallery()">&times;</button>
+          <div id="screencapture-modal-images"></div>
+        </div>
+      </div>
+
+      <script>
+        const screencaptureImages = [
+          "billeder/screencapture-t10eksamen3-netlify-app-2026-05-02-16_10_39.png",
+          "billeder/screencapture-t10eksamen3-netlify-app-listview-2026-05-02-16_10_50.png",
+          "billeder/screencapture-t10eksamen3-netlify-app-logind-2026-05-02-16_11_02.png",
+        ];
+
+        let currentScreencaptureIndex = 0;
+
+        function openScreencaptureGallery() {
+          displayScreencaptureImages();
+          document.getElementById("screencapture-modal").style.display = "flex";
+        }
+
+        function displayScreencaptureImages() {
+          const container = document.getElementById("screencapture-modal-images");
+          container.innerHTML = "";
+
+          screencaptureImages.forEach((src) => {
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = "";
+            img.style.maxWidth = "100%";
+            img.style.height = "auto";
+            img.style.marginBottom = "20px";
+            img.style.display = "block";
+            container.appendChild(img);
+          });
+        }
+
+        function closeScreencaptureGallery() {
+          document.getElementById("screencapture-modal").style.display = "none";
+        }
+
+        function nextScreencaptureImage() {
+          currentScreencaptureIndex = (currentScreencaptureIndex + 1) % screencaptureImages.length;
+          updateScreencaptureImage();
+        }
+
+        function prevScreencaptureImage() {
+          currentScreencaptureIndex = (currentScreencaptureIndex - 1 + screencaptureImages.length) % screencaptureImages.length;
+          updateScreencaptureImage();
+        }
+
+        function updateScreencaptureImage() {
+          const img = document.getElementById("screencapture-modal-img");
+          img.src = screencaptureImages[currentScreencaptureIndex];
+          document.getElementById("screencapture-modal-counter").textContent = currentScreencaptureIndex + 1 + " / " + screencaptureImages.length;
+        }
+
+        function openTokiShowcase() {
+          document.getElementById("toki-modal").style.display = "flex";
+        }
+
+        function closeTokiShowcase() {
+          document.getElementById("toki-modal").style.display = "none";
+        }
+
+        document.getElementById("screencapture-modal").addEventListener("click", (event) => {
+          if (event.target === event.currentTarget) {
+            closeScreencaptureGallery();
+          }
+        });
+
+        document.getElementById("toki-modal").addEventListener("click", (event) => {
+          if (event.target === event.currentTarget) {
+            closeTokiShowcase();
+          }
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (document.getElementById("screencapture-modal").style.display === "flex") {
+            if (e.key === "Escape") closeScreencaptureGallery();
+          }
+          if (document.getElementById("toki-modal").style.display === "flex") {
+            if (e.key === "Escape") closeTokiShowcase();
+          }
+        });
+      </script>
+
+      <footer class="page-footer">
+        <p>Scherffmarkus@gmail.com</p>
+        <a class="social-link" href="https://instagram.com/markuskoefoed" target="_blank" rel="noopener noreferrer">
+          <img src="billeder/instagram.svg" alt="Instagram" />
+          <span>Markuskoefoed</span>
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>

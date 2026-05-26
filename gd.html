@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Grafisk Design</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div>
+          <a href="index.html">Markus Koefoed-Scherff</a>
+        </div>
+        <nav>
+          <a href="video.html">Videoer</a>
+          <a href="gd.html">Grafisk Design</a>
+          <a href="hjemmeside.html">Hjemmesider</a>
+        </nav>
+      </header>
+
+      <h2>Grafisk Design</h2>
+
+      <div class="projects">
+        <button class="img-button" onclick="openSpaGallery()"><img src="billeder/spa.png" /></button>
+        <button class="img-button" onclick="openPosterGallery()"><img src="billeder/poster.png" /></button>
+        <button class="img-button" onclick="openMagazineGallery()"><img src="billeder/magazine.png" /></button>
+      </div>
+
+      <div id="spa-gallery" class="spa-gallery">
+        <div class="spa-gallery-content">
+          <button class="spa-gallery-close" onclick="closeSpaGallery()">&times;</button>
+          <div class="spa-gallery-left">
+            <div id="spa-gallery-images"></div>
+          </div>
+          <div class="spa-gallery-right">
+            <h3>Spa Design Collection</h3>
+            <p>Nogle t-shirts jeg har designet og printet på t-shirts</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="magazine-gallery" class="spa-gallery">
+        <div class="spa-gallery-content">
+          <button class="spa-gallery-close" onclick="closeMagazineGallery()">&times;</button>
+          <div class="spa-gallery-left">
+            <div id="magazine-gallery-images"></div>
+          </div>
+          <div class="spa-gallery-right">
+            <h3>Magazine Graphic Collection</h3>
+            <p>Et skoleproject, hvor der skulle laves et magasin i programmet InDesign</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="poster-gallery" class="spa-gallery">
+        <div class="spa-gallery-content">
+          <button class="spa-gallery-close" onclick="closePosterGallery()">&times;</button>
+          <div class="spa-gallery-left">
+            <div id="poster-gallery-images"></div>
+          </div>
+          <div class="spa-gallery-right">
+            <h3>Poster Collection</h3>
+            <p>Et poster-project for min gode ven Jonas Løefgren, der i april måned 2026, udgav sin digtsamling "Stjernestøv Til Låns"</p>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        const galleryImages = [
+          "billeder/magazinpng/Magazine2.png",
+          "billeder/magazinpng/Magazine3.png",
+          "billeder/magazinpng/Magazine4.png",
+          "billeder/magazinpng/Magazine5.png",
+          "billeder/magazinpng/Magazine6.png",
+          "billeder/magazinpng/Magazine7.png",
+          "billeder/magazinpng/Magazine8.png",
+          "billeder/magazinpng/Magazine9.png",
+          "billeder/magazinpng/Magazine10.png",
+          "billeder/magazinpng/Magazine11.png",
+          "billeder/magazinpng/Magazine12.png",
+          "billeder/magazinpng/Magazine13.png",
+          "billeder/magazinpng/Magazine14.png",
+          "billeder/magazinpng/Magazine15.png",
+          "billeder/magazinpng/Magazine16.png",
+          "billeder/magazinpng/Magazine17.png",
+          "billeder/magazinpng/Magazine18.png",
+          "billeder/magazinpng/Magazine19.png",
+        ];
+
+        const spaImages = ["billeder/shirt.jpeg", "billeder/shirt2.jpeg"];
+
+        function hideGalleryById(id) {
+          const gallery = document.getElementById(id);
+          if (!gallery || gallery.style.display === "none") return;
+          gallery.classList.remove("open");
+          setTimeout(() => {
+            if (!gallery.classList.contains("open")) {
+              gallery.style.display = "none";
+            }
+          }, 350);
+        }
+
+        function closeOtherGalleries(openId) {
+          ["spa-gallery", "magazine-gallery", "poster-gallery"].forEach((id) => {
+            if (id !== openId) hideGalleryById(id);
+          });
+        }
+
+        function openSpaGallery() {
+          closeOtherGalleries("spa-gallery");
+          const gallery = document.getElementById("spa-gallery");
+          const container = document.getElementById("spa-gallery-images");
+          container.innerHTML = "";
+          spaImages.forEach((src) => {
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = "";
+            img.style.maxWidth = "100%";
+            img.style.height = "auto";
+            img.style.marginBottom = "20px";
+            img.style.display = "block";
+            container.appendChild(img);
+          });
+          gallery.style.display = "block";
+          setTimeout(() => gallery.classList.add("open"), 10);
+        }
+
+        function closeSpaGallery() {
+          closeGalleryById("spa-gallery");
+        }
+
+        function openMagazineGallery() {
+          closeOtherGalleries("magazine-gallery");
+          const gallery = document.getElementById("magazine-gallery");
+          const container = document.getElementById("magazine-gallery-images");
+          container.innerHTML = "";
+          galleryImages.forEach((src) => {
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = "";
+            img.style.maxWidth = "100%";
+            img.style.height = "auto";
+            img.style.objectFit = "cover";
+            container.appendChild(img);
+          });
+          gallery.style.display = "block";
+          setTimeout(() => gallery.classList.add("open"), 10);
+        }
+
+        function closeMagazineGallery() {
+          closeGalleryById("magazine-gallery");
+        }
+
+        const posterImages = ["billeder/posster.jpg", "billeder/possssrter.jpg"];
+
+        function openPosterGallery() {
+          closeOtherGalleries("poster-gallery");
+          const gallery = document.getElementById("poster-gallery");
+          const container = document.getElementById("poster-gallery-images");
+          container.innerHTML = "";
+          posterImages.forEach((src) => {
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = "";
+            img.style.maxWidth = "100%";
+            img.style.height = "auto";
+            img.style.objectFit = "cover";
+            container.appendChild(img);
+          });
+          gallery.style.display = "block";
+          setTimeout(() => gallery.classList.add("open"), 10);
+        }
+
+        function closePosterGallery() {
+          closeGalleryById("poster-gallery");
+        }
+
+        document.getElementById("poster-gallery").addEventListener("click", (event) => {
+          if (event.target === event.currentTarget) {
+            closePosterGallery();
+          }
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (document.getElementById("spa-gallery").style.display === "block" && e.key === "Escape") {
+            closeSpaGallery();
+          }
+          if (document.getElementById("magazine-gallery").style.display === "block" && e.key === "Escape") {
+            closeMagazineGallery();
+          }
+          if (document.getElementById("poster-gallery").style.display === "block" && e.key === "Escape") {
+            closePosterGallery();
+          }
+        });
+      </script>
+
+      <footer class="page-footer">
+        <p>Scherffmarkus@gmail.com</p>
+        <a class="social-link" href="https://instagram.com/markuskoefoed" target="_blank" rel="noopener noreferrer">
+          <img src="billeder/instagram.svg" alt="Instagram" />
+          <span>Markuskoefoed</span>
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
