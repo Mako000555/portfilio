@@ -71,7 +71,7 @@ header {
 
 body {
   font-family: Helvetica, Arial, sans-serif;
-  background-color: #fff;
+  background-color: #ffffff;
   color: #000;
   margin: 0;
 }
@@ -95,6 +95,11 @@ body {
 
 .page-footer p {
   margin: 0;
+}
+
+.page-footer p a {
+  color: #000;
+  text-decoration: none;
 }
 
 .page-footer .social-link {

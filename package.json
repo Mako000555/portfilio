@@ -1,0 +1,17 @@
+{
+  "name": "portfolio-image-tools",
+  "version": "1.0.0",
+  "description": "Image conversion utilities for the portfolio site",
+  "main": "scripts/convert-images.js",
+  "scripts": {
+    "convert-images": "node scripts/convert-images.js",
+    "generate-responsive-webp": "node scripts/generate-responsive-webp.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "glob": "^10.2.7",
+    "sharp": "^0.32.5",
+    "fs-extra": "^11.1.1"
+  }
+}
