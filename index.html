@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="style.css" />
+    <noscript><style>body.page-transition{opacity:1!important;}</style></noscript>
     <title>Portfolio</title>
   </head>
-  <body>
+  <body class="page-transition">
     <div class="container">
       <header>
         <div>
@@ -42,11 +43,18 @@
 
       <footer class="page-footer">
         <p><a href="mailto:Scherffmarkus@gmail.com">Scherffmarkus@gmail.com</a></p>
-        <a class="social-link" href="https://instagram.com/markuskoefoed" target="_blank" rel="noopener noreferrer">
-          <img src="billeder/instagram.svg" alt="Instagram" />
-          <span>Markuskoefoed</span>
-        </a>
+        <div class="footer-links">
+          <a class="social-link" href="https://instagram.com/markuskoefoed" target="_blank" rel="noopener noreferrer">
+            <img src="billeder/instagram.svg" alt="Instagram" />
+            <span>Markuskoefoed</span>
+          </a>
+          <a class="social-link" href="https://www.youtube.com/@markuskoefoed" target="_blank" rel="noopener noreferrer">
+            <img src="billeder/[CITYPNG.COM]HD Black Outline Youtube YT Logo Sign Icon PNG - 2500x2500.webp" alt="YouTube" />
+            <span>YouTube</span>
+          </a>
+        </div>
       </footer>
     </div>
+    <script src="scripts/transition.js" defer></script>
   </body>
 </html>
