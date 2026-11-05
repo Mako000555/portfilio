@@ -31,6 +31,12 @@
         <button class="img-button" onclick="openSpaGallery()"><img src="billeder/spa.png" /></button>
         <button class="img-button" onclick="openPosterGallery()"><img src="billeder/poster.png" /></button>
         <button class="img-button" onclick="openMagazineGallery()"><img src="billeder/magazine.png" /></button>
+        <button class="img-button" onclick="openBehindGallery()">
+          <img src="billeder/BTSgd.png" alt="Behind The Scenes" />
+        </button>
+        <button class="img-button">
+          <img src="billeder/WWposter2-01.png" alt="WW Poster 2" />
+        </button>
       </div>
 
       <div id="spa-gallery" class="spa-gallery">
@@ -72,6 +78,19 @@
         </div>
       </div>
 
+      <div id="behind-gallery" class="spa-gallery">
+        <div class="spa-gallery-content">
+          <button class="spa-gallery-close" onclick="closeBehindGallery()">&times;</button>
+          <div class="spa-gallery-left">
+            <div id="behind-gallery-images"></div>
+          </div>
+          <div class="spa-gallery-right">
+            <h3>Behind The Scenes</h3>
+            <p>A visual exploration of typography, textures, outlines and colour variations.</p>
+          </div>
+        </div>
+      </div>
+
       <script>
         const galleryImages = [
           "billeder/magazinpng/Magazine2.png",
@@ -108,7 +127,7 @@
         }
 
         function closeOtherGalleries(openId) {
-          ["spa-gallery", "magazine-gallery", "poster-gallery"].forEach((id) => {
+          ["spa-gallery", "magazine-gallery", "poster-gallery", "behind-gallery"].forEach((id) => {
             if (id !== openId) hideGalleryById(id);
           });
         }
@@ -134,6 +153,11 @@
 
         function closeSpaGallery() {
           closeGalleryById("spa-gallery");
+        }
+
+        // Utility: close a gallery by id (uses hideGalleryById)
+        function closeGalleryById(id) {
+          hideGalleryById(id);
         }
 
         function openMagazineGallery() {
@@ -182,10 +206,43 @@
           closeGalleryById("poster-gallery");
         }
 
-        document.getElementById("poster-gallery").addEventListener("click", (event) => {
-          if (event.target === event.currentTarget) {
-            closePosterGallery();
-          }
+        const behindTheScenesImages = ["billeder/Asset 1.png", "billeder/Asset 2.png", "billeder/Asset 3.png", "billeder/Asset 4.png", "billeder/Asset 5.png", "billeder/Asset 6.png", "billeder/Asset 7.png", "billeder/Asset 8.png"];
+
+        function openBehindGallery() {
+          closeOtherGalleries("behind-gallery");
+          const gallery = document.getElementById("behind-gallery");
+          const container = document.getElementById("behind-gallery-images");
+          container.innerHTML = "";
+
+          behindTheScenesImages.forEach((src, index) => {
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = `Behind The Scenes lettering study ${index + 1}`;
+            img.style.width = "100%";
+            img.style.maxWidth = "100%";
+            img.style.height = "auto";
+            img.style.display = "block";
+            img.style.marginBottom = "20px";
+            img.style.objectFit = "contain";
+            container.appendChild(img);
+          });
+          gallery.style.display = "block";
+          setTimeout(() => gallery.classList.add("open"), 10);
+        }
+
+        function closeBehindGallery() {
+          closeGalleryById("behind-gallery");
+        }
+
+        // allow clicking the backdrop to close any open gallery
+        ["spa-gallery", "magazine-gallery", "poster-gallery", "behind-gallery"].forEach((id) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          el.addEventListener("click", (event) => {
+            if (event.target === event.currentTarget) {
+              closeGalleryById(id);
+            }
+          });
         });
 
         document.addEventListener("keydown", (e) => {
@@ -197,6 +254,9 @@
           }
           if (document.getElementById("poster-gallery").style.display === "block" && e.key === "Escape") {
             closePosterGallery();
+          }
+          if (document.getElementById("behind-gallery").style.display === "block" && e.key === "Escape") {
+            closeBehindGallery();
           }
         });
       </script>
