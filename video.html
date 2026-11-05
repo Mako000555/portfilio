@@ -15,11 +15,16 @@
   </head>
   <body class="page-transition responsive-page">
     <div class="container">
-      <header>
+      <header class="site-header">
         <div>
           <a href="index.html">Markus Koefoed-Scherff</a>
         </div>
-        <nav>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" aria-label="Åbn menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav id="site-navigation">
           <a href="video.html">Videoer</a>
           <a href="gd.html">Grafisk Design</a>
           <a href="hjemmeside.html">Hjemmesider</a>
@@ -107,6 +112,7 @@
         </div>
       </footer>
     </div>
+    <script src="scripts/mobile-menu.js" defer></script>
     <script src="scripts/transition.js" defer></script>
   </body>
 </html>
